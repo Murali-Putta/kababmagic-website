@@ -39,3 +39,9 @@ footer {
 .img-fluid:hover {
   transform: scale(1.1);
 }
+.shadow-sm {
+  background-color: rgb(247, 244, 240);
+}
+.shadow-sm:hover {
+  transform: scale(1.05);
+}
