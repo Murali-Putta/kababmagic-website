@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KABAB MAGIC | 100% FIRE</title>
+    <title>KABAB MAGIC | APOLOGIZE TO YOUR TRAINER</title>
     
     <!-- High-Energy Fonts: Bebas Neue (Massive Headlines) & Space Grotesk (Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,7 +27,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: crosshair; /* Edgy cursor */
         }
 
         body {
@@ -38,7 +37,7 @@
             background-image: 
                 linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
+            background-size: 40px 40px;
         }
 
         h1, h2, h3, .display {
@@ -52,26 +51,18 @@
             color: var(--bg);
         }
 
-        /* === NOISE OVERLAY === */
-        .noise {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.05;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
         /* === NAV === */
         nav {
             position: fixed;
             top: 0; width: 100%;
-            padding: 20px 40px;
+            padding: 20px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            mix-blend-mode: difference;
+            background: rgba(5, 5, 5, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(204, 255, 0, 0.2);
         }
 
         .logo {
@@ -84,90 +75,124 @@
 
         .logo span { color: var(--acid-yellow); }
 
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
         .nav-links a {
             color: #fff;
             text-decoration: none;
             font-weight: 900;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             text-transform: uppercase;
-            margin-left: 30px;
             position: relative;
+            transition: color 0.3s;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px; left: 0;
-            width: 0%; height: 3px;
-            background: var(--acid-yellow);
-            transition: width 0.3s ease;
+        .nav-links a:hover {
+            color: var(--acid-yellow);
         }
-
-        .nav-links a:hover::after { width: 100%; }
 
         /* === HERO SECTION === */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             position: relative;
+            padding: 100px 5% 0;
             overflow: hidden;
-            padding: 0 20px;
         }
 
-        .hero-img {
+        /* Floating background elements */
+        .hero-bg-text {
             position: absolute;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 25vw;
+            color: rgba(255,255,255,0.02);
+            white-space: nowrap;
+            z-index: 0;
+            pointer-events: none;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 60vw;
-            height: 60vh;
-            object-fit: cover;
-            opacity: 0.4;
-            filter: grayscale(100%) contrast(1.2);
-            z-index: 0;
-            border-radius: 20px;
-            transition: filter 0.5s;
         }
 
-        .hero:hover .hero-img {
-            filter: grayscale(0%) contrast(1.1);
-        }
-
-        .hero-text {
-            position: relative;
-            z-index: 1;
-            text-align: center;
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
             width: 100%;
+            max-width: 1400px;
+            z-index: 2;
         }
 
         .hero-text h1 {
-            font-size: clamp(6rem, 15vw, 15rem);
+            font-size: clamp(5rem, 10vw, 12rem);
             color: var(--text-main);
             margin: 0;
-            text-shadow: 4px 4px 0px var(--hot-pink), -4px -4px 0px var(--cyan);
-            animation: glitch 3s infinite alternate;
+            text-shadow: 4px 4px 0px var(--hot-pink);
         }
 
         .hero-text .outline {
             color: transparent;
             -webkit-text-stroke: 2px var(--acid-yellow);
             text-shadow: none;
+            display: block;
         }
 
-        @keyframes glitch {
-            0% { text-shadow: 4px 4px 0px var(--hot-pink), -4px -4px 0px var(--cyan); }
-            10% { text-shadow: -4px 4px 0px var(--hot-pink), 4px -4px 0px var(--cyan); }
-            20% { text-shadow: 4px 4px 0px var(--hot-pink), -4px -4px 0px var(--cyan); }
-            100% { text-shadow: 4px 4px 0px var(--hot-pink), -4px -4px 0px var(--cyan); }
+        .hero-text p {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 20px;
+            color: #aaa;
+            max-width: 500px;
+            line-height: 1.5;
         }
+
+        .hero-img-box {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/5;
+            border-radius: 20px;
+            border: 4px solid var(--text-main);
+            box-shadow: 20px 20px 0px var(--cyan);
+            overflow: hidden;
+            transform: rotate(2deg);
+        }
+
+        .hero-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sticker {
+            position: absolute;
+            top: -20px; left: -20px;
+            width: 140px; height: 140px;
+            background: var(--hot-pink);
+            color: #fff;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            border: 4px solid var(--text-main);
+            z-index: 5;
+            animation: spin 8s linear infinite;
+            line-height: 1;
+            box-shadow: 0 0 30px rgba(255, 0, 85, 0.6);
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
         /* === INFINITE MARQUEE === */
-        .marquee-container {
+        .marquee-wrapper {
             background: var(--acid-yellow);
             color: var(--bg);
-            padding: 15px 0;
+            padding: 20px 0;
             overflow: hidden;
             white-space: nowrap;
             position: relative;
@@ -176,6 +201,7 @@
             transform: rotate(-2deg);
             width: 105vw;
             margin-left: -2.5vw;
+            margin-top: 50px;
             z-index: 10;
         }
 
@@ -183,132 +209,145 @@
             display: inline-block;
             font-family: 'Bebas Neue', sans-serif;
             font-size: 4rem;
-            animation: scroll 10s linear infinite;
+            animation: scroll 20s linear infinite;
         }
 
-        .marquee span { margin: 0 30px; }
+        .marquee span { margin: 0 40px; }
 
         @keyframes scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
-        /* === HIGH ENERGY MENU === */
+        /* === MASSIVE JUICY MENU SECTION === */
         .menu-section {
-            padding: 150px 5% 100px;
+            padding: 150px 5%;
             max-width: 1600px;
             margin: 0 auto;
         }
 
         .section-title {
             font-size: clamp(4rem, 8vw, 8rem);
-            margin-bottom: 60px;
-            color: var(--acid-yellow);
+            margin-bottom: 100px;
+            color: var(--text-main);
+            text-align: center;
+            text-shadow: 4px 4px 0px var(--hot-pink);
         }
 
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 40px;
-        }
-
-        .menu-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            background: #111;
-            aspect-ratio: 4/3;
-            cursor: pointer;
-        }
-
-        .menu-img {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover;
-            filter: grayscale(100%) brightness(0.6);
-            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .menu-item:hover .menu-img {
-            filter: grayscale(0%) brightness(0.9);
-            transform: scale(1.1);
-        }
-
-        .menu-content {
-            position: absolute;
-            inset: 0;
-            padding: 40px;
+        .menu-list {
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            z-index: 2;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            gap: 120px;
         }
 
-        .menu-content h3 {
-            font-size: 3.5rem;
+        /* Alternate Rows Layout */
+        .menu-row {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            width: 100%;
+        }
+
+        .menu-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .menu-image-container {
+            flex: 1.2;
+            position: relative;
+            aspect-ratio: 16/10;
+            border-radius: 20px;
+            border: 4px solid var(--text-main);
+            overflow: hidden;
+            box-shadow: 25px 25px 0px var(--acid-yellow);
+            transition: transform 0.4s ease;
+        }
+
+        .menu-row:nth-child(even) .menu-image-container {
+            box-shadow: -25px 25px 0px var(--cyan);
+        }
+
+        .menu-image-container:hover {
+            transform: translate(-5px, -5px);
+        }
+        .menu-row:nth-child(even) .menu-image-container:hover {
+            transform: translate(5px, -5px);
+        }
+
+        .menu-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .menu-image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .menu-info {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .menu-info h3 {
+            font-size: clamp(3.5rem, 6vw, 6rem);
             color: #fff;
-            transition: color 0.3s;
+            margin-bottom: 20px;
+            line-height: 0.9;
         }
 
-        .menu-item:hover .menu-content h3 {
-            color: var(--acid-yellow);
-        }
-
-        .menu-content p {
-            font-size: 1.1rem;
-            font-weight: 700;
+        .menu-info p {
+            font-size: 1.3rem;
             color: #ccc;
-            margin-top: 10px;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.4s ease;
-        }
-
-        .menu-item:hover .menu-content p {
-            transform: translateY(0);
-            opacity: 1;
+            font-weight: 700;
+            line-height: 1.5;
+            max-width: 600px;
+            margin-bottom: 30px;
         }
 
         .tag {
-            position: absolute;
-            top: 20px; right: 20px;
+            display: inline-block;
             background: var(--hot-pink);
             color: #fff;
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.5rem;
-            padding: 5px 15px;
-            transform: rotate(5deg);
-            z-index: 3;
-            box-shadow: 4px 4px 0px #000;
+            font-size: 2rem;
+            padding: 10px 25px;
+            transform: rotate(-2deg);
+            border: 3px solid var(--text-main);
+            box-shadow: 6px 6px 0px #000;
+            margin-bottom: 20px;
         }
+
+        .tag-yellow { background: var(--acid-yellow); color: var(--bg); }
+        .tag-cyan { background: var(--cyan); color: var(--bg); }
 
         /* === FRANCHISE EXPLOSION === */
         .franchise {
-            background: var(--hot-pink);
+            background: var(--cyan);
             padding: 150px 5%;
             text-align: center;
-            color: #fff;
+            color: var(--bg);
             position: relative;
             overflow: hidden;
-            border-top: 5px solid #fff;
+            border-top: 8px solid var(--text-main);
+            margin-top: 100px;
         }
 
         .franchise h2 {
             font-size: clamp(5rem, 10vw, 10rem);
             color: var(--bg);
-            text-shadow: 2px 2px 0 #fff;
-            margin-bottom: 20px;
+            text-shadow: 3px 3px 0 #fff;
+            margin-bottom: 30px;
             line-height: 0.8;
             position: relative;
             z-index: 2;
         }
 
         .franchise p {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 900;
-            color: var(--bg);
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto 50px auto;
             position: relative;
             z-index: 2;
@@ -317,14 +356,14 @@
 
         .btn-massive {
             display: inline-block;
-            background: var(--acid-yellow);
-            color: var(--bg);
+            background: var(--bg);
+            color: var(--acid-yellow);
             font-family: 'Bebas Neue', sans-serif;
             font-size: 3rem;
-            padding: 20px 60px;
+            padding: 25px 70px;
             text-decoration: none;
             border: 4px solid var(--bg);
-            box-shadow: 10px 10px 0px var(--bg);
+            box-shadow: 15px 15px 0px var(--hot-pink);
             transition: all 0.2s ease;
             position: relative;
             z-index: 2;
@@ -332,25 +371,8 @@
 
         .btn-massive:hover {
             transform: translate(-5px, -5px);
-            box-shadow: 15px 15px 0px var(--bg);
-        }
-
-        .btn-massive:active {
-            transform: translate(5px, 5px);
-            box-shadow: 0px 0px 0px var(--bg);
-        }
-
-        /* Background kinetic text for franchise */
-        .bg-text {
-            position: absolute;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 20rem;
-            color: rgba(0,0,0,0.1);
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            white-space: nowrap;
-            z-index: 1;
-            pointer-events: none;
+            box-shadow: 20px 20px 0px var(--hot-pink);
+            color: #fff;
         }
 
         /* === FOOTER === */
@@ -358,7 +380,7 @@
             background: var(--bg);
             padding: 50px 20px;
             text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 2px solid rgba(255,255,255,0.1);
         }
 
         footer h1 {
@@ -366,103 +388,123 @@
             color: var(--acid-yellow);
         }
 
+        /* === RESPONSIVE === */
+        @media (max-width: 992px) {
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-text h1 { text-shadow: 3px 3px 0px var(--hot-pink); }
+            .hero-text p { margin: 20px auto 0; }
+            .hero-img-box { max-width: 600px; margin: 40px auto 0; transform: rotate(0); }
+            
+            .menu-row, .menu-row:nth-child(even) { flex-direction: column; text-align: center; gap: 30px; }
+            .menu-image-container { width: 100%; box-shadow: 15px 15px 0px var(--acid-yellow) !important; }
+            .menu-info { padding: 0; display: flex; flex-direction: column; align-items: center; }
+        }
+
         @media (max-width: 768px) {
             .nav-links { display: none; }
             nav { justify-content: center; }
-            .menu-grid { grid-template-columns: 1fr; }
-            .menu-item { aspect-ratio: 1/1; }
+            .franchise { padding: 100px 5%; }
+            .btn-massive { font-size: 2rem; padding: 20px 40px; box-shadow: 10px 10px 0px var(--hot-pink); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Film Grain / Noise Effect -->
-    <div class="noise"></div>
-
     <!-- NAV -->
     <nav class="gsap-nav">
         <a href="#" class="logo">KABAB<span>MAGIC</span></a>
         <div class="nav-links">
-            <a href="#menu">The Lineup</a>
-            <a href="#franchise">Franchise</a>
+            <a href="#menu">The Calorie Trap</a>
+            <a href="#franchise">Take Our Money</a>
         </div>
     </nav>
 
     <!-- HERO -->
     <section class="hero">
-        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=2000&auto=format&fit=crop" class="hero-img gsap-img" alt="Hero Background">
-        <div class="hero-text">
-            <h1 class="gsap-title-1">FLAVOR THAT</h1>
-            <h1 class="gsap-title-2 outline">HITS DIFFERENT.</h1>
+        <div class="hero-bg-text">GYM MEMBERSHIP VOID</div>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="gsap-title-1">FLAVOR THAT</h1>
+                <h1 class="gsap-title-2 outline">RUINS DIETS.</h1>
+                <p class="gsap-fade">Welcome to the reason your personal trainer hates you. If you’re looking for a kale smoothie, close this tab before we call the cops. We serve aggressive, fire-forged, unapologetically spicy meat that will make you question every life choice that didn't lead you here.</p>
+            </div>
+            
+            <div class="hero-img-box gsap-img">
+                <div class="sticker">HOT<br>AF</div>
+                <!-- Super reliable, juicy kebab shot directly from Unsplash -->
+                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=80" alt="Hero Kebab Grill">
+            </div>
         </div>
     </section>
 
     <!-- KINETIC MARQUEE -->
-    <div class="marquee-container">
+    <div class="marquee-wrapper">
         <div class="marquee">
-            <span>🔥 100% FIRE GRILLED</span>
-            <span>💥 SPICE LOADED</span>
-            <span>🤤 HIGHLY ADDICTIVE</span>
-            <span>🔥 100% FIRE GRILLED</span>
-            <span>💥 SPICE LOADED</span>
-            <span>🤤 HIGHLY ADDICTIVE</span>
+            <span>🔥 YOUR DIET EXPIRED YESTERDAY</span>
+            <span>💥 EAT THE CARBS, COWARD</span>
+            <span>🤤 SALAD IS A GOVERNMENT MYTH</span>
+            <span>🔥 YOUR DIET EXPIRED YESTERDAY</span>
+            <span>💥 EAT THE CARBS, COWARD</span>
+            <span>🤤 SALAD IS A GOVERNMENT MYTH</span>
         </div>
     </div>
 
-    <!-- MENU LINEUP -->
+    <!-- MASSIVE JUICY MENU -->
     <section id="menu" class="menu-section">
-        <h2 class="section-title gsap-fade-up">THE LINEUP //</h2>
+        <h2 class="section-title gsap-fade-up">THE "I'LL START MY DIET TOMORROW" MENU</h2>
         
-        <div class="menu-grid">
+        <div class="menu-list">
             
-            <div class="menu-item gsap-fade-up">
-                <div class="tag">OG STATUS</div>
-                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1000&auto=format&fit=crop" alt="Chicken Kabab" class="menu-img">
-                <div class="menu-content">
-                    <h3>CHICKEN KABAB</h3>
-                    <p>Smoky, charred, and dripping with our secret spice blend. The legend that started it all.</p>
+            <!-- Menu Item 1: Chicken Kabab -->
+            <div class="menu-row gsap-fade-up">
+                <div class="menu-image-container">
+                    <!-- Accurate, juicy Chicken Kabab chunks -->
+                    <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?auto=format&fit=crop&w=1200&q=80" alt="Chicken Kabab">
+                </div>
+                <div class="menu-info">
+                    <div class="tag">PROTEIN, BUT MAKE IT VIOLENT</div>
+                    <h3>THE CHICKEN KABAB</h3>
+                    <p>Marinated so aggressively it practically cooks itself. Charred over open flames until it tastes like pure adrenaline. If you ask us to 'make it mild,' we will hand you a glass of water and ask you to leave. Have some self-respect.</p>
                 </div>
             </div>
 
-            <div class="menu-item gsap-fade-up">
-                <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?q=80&w=1000&auto=format&fit=crop" alt="Dum Biryani" class="menu-img">
-                <div class="menu-content">
+            <!-- Menu Item 2: Biryani -->
+            <div class="menu-row gsap-fade-up">
+                <div class="menu-image-container">
+                    <!-- High quality authentic Indian Biryani -->
+                    <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=1200&q=80" alt="Dum Biryani">
+                </div>
+                <div class="menu-info">
+                    <div class="tag tag-yellow">THE 48-HOUR NAP</div>
                     <h3>ROYAL DUM BIRYANI</h3>
-                    <p>Basmati rice and tender meat, trapped in a pot and slow-cooked until it blows your mind.</p>
+                    <p>Aged basmati rice and fall-apart meat trapped in a sealed pot with enough spices to legally count as a controlled substance. Cancel your afternoon meetings. You're going into a carb-induced hibernation, and you're going to love it.</p>
                 </div>
             </div>
 
-            <div class="menu-item gsap-fade-up">
-                <div class="tag">SPICY AF</div>
-                <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?q=80&w=1000&auto=format&fit=crop" alt="Mutton Rogan Josh" class="menu-img">
-                <div class="menu-content">
-                    <h3>MUTTON ROGAN JOSH</h3>
-                    <p>Fall-off-the-bone mutton in a fiery, rich crimson curry. Not for the faint of heart.</p>
+            <!-- Menu Item 3: Shawarma -->
+            <div class="menu-row gsap-fade-up">
+                <div class="menu-image-container">
+                    <!-- ACTUAL juicy Shawarma wrap/roll -->
+                    <img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&w=1200&q=80" alt="Shawarma">
                 </div>
-            </div>
-
-            <div class="menu-item gsap-fade-up">
-                <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?q=80&w=1000&auto=format&fit=crop" alt="Tandoori Chicken" class="menu-img">
-                <div class="menu-content">
-                    <h3>TANDOORI CHICKEN</h3>
-                    <p>Yogurt, red chili, and intense clay-oven heat. A classic executed flawlessly.</p>
-                </div>
-            </div>
-
-            <div class="menu-item gsap-fade-up">
-                <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=1000&auto=format&fit=crop" alt="Shawarma" class="menu-img">
-                <div class="menu-content">
+                <div class="menu-info">
+                    <div class="tag tag-cyan">YOUR EX WOULD NEVER</div>
                     <h3>CLASSIC SHAWARMA</h3>
-                    <p>Shaved spit-roasted meat wrapped up tight and loaded with garlic toum.</p>
+                    <p>Shaved spit-roasted meat crammed into a wrap and weaponized with enough garlic toum to ensure nobody sits next to you on the train. Will it ruin your date tonight? Yes. Will it be the best thing you put in your mouth all year? Also yes.</p>
                 </div>
             </div>
 
-            <div class="menu-item gsap-fade-up">
-                <div class="tag">VEG FIRE</div>
-                <img src="https://images.unsplash.com/photo-1628294895950-9805252327bc?q=80&w=1000&auto=format&fit=crop" alt="Paneer Tikka" class="menu-img">
-                <div class="menu-content">
-                    <h3>SIZZLING PANEER</h3>
-                    <p>Thick cuts of fresh paneer, charred to perfection. Vegetarians, we got you.</p>
+            <!-- Menu Item 4: Tandoori Chicken -->
+            <div class="menu-row gsap-fade-up">
+                <div class="menu-image-container">
+                    <!-- Authentic Tandoori Chicken / Grilled -->
+                    <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=1200&q=80" alt="Tandoori Chicken">
+                </div>
+                <div class="menu-info">
+                    <div class="tag">BRING A TOWEL</div>
+                    <h3>TANDOORI CHICKEN</h3>
+                    <p>Marinated in yogurt and Kashmiri chili, then thrown into a clay oven that’s basically a portal to hell. It’s violently red, illegally smoky, and will make you sweat straight through your shirt. Don't say we didn't warn you.</p>
                 </div>
             </div>
 
@@ -471,14 +513,13 @@
 
     <!-- FRANCHISE SECTION -->
     <section id="franchise" class="franchise">
-        <div class="bg-text">JOIN THE CULT</div>
-        <h2 class="gsap-scale-up">WANT A PIECE?</h2>
-        <p class="gsap-scale-up">Skip the corporate BS. We are expanding rapidly. Talk directly to the owners on WhatsApp and launch Kabab Magic in your territory.</p>
+        <h2 class="gsap-scale-up">BE THE VILLAIN IN YOUR CITY</h2>
+        <p class="gsap-scale-up">Tired of working for a manager who schedules a "quick sync" at 8 PM on a Friday? Or asking you to "do the needful" on weekends? Open a Kabab Magic. Slide into our WhatsApp DMs, invest your savings, and start selling the most legally addictive food in the country.</p>
         
         <div class="gsap-scale-up">
             <!-- Replace '1234567890' with your actual WhatsApp Number -->
-            <a href="https://wa.me/9035676744?text=I%20want%20to%20open%20a%20Kabab%20Magic." target="_blank" class="btn-massive">
-                <i class="fa-brands fa-whatsapp"></i> HIT US ON WHATSAPP
+            <a href="https://wa.me/9035676744?text=Yo!%20I'm%20ready%20to%20open%20a%20Kabab%20Magic.%20Take%20my%20money." target="_blank" class="btn-massive">
+                <i class="fa-brands fa-whatsapp"></i> SHUT UP AND TAKE MY MONEY
             </a>
         </div>
     </section>
@@ -486,10 +527,10 @@
     <!-- FOOTER -->
     <footer>
         <h1>KABAB MAGIC</h1>
-        <p style="color: #666; margin-top: 10px; font-weight: bold;">© 2013. NO COMPROMISE ON FLAVOR.</p>
+        <p style="color: #666; margin-top: 10px; font-weight: bold; font-size: 1.2rem;">© 2013. IF YOU ASK FOR A SALAD, WE WILL BAN YOU.</p>
     </footer>
 
-    <!-- GSAP for Snappy Animations -->
+    <!-- GSAP for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
@@ -500,20 +541,21 @@
         const tl = gsap.timeline();
         
         tl.from(".gsap-nav", { y: -50, opacity: 0, duration: 0.5, ease: "power2.out" })
-          .from(".gsap-img", { scale: 1.2, opacity: 0, duration: 1, ease: "power3.out" }, "-=0.2")
+          .from(".gsap-img", { x: 50, opacity: 0, rotation: 5, duration: 1, ease: "back.out(1.2)" }, "-=0.2")
           .from(".gsap-title-1", { y: 100, opacity: 0, duration: 0.6, ease: "back.out(1.5)" }, "-=0.6")
-          .from(".gsap-title-2", { y: 100, opacity: 0, duration: 0.6, ease: "back.out(1.5)" }, "-=0.4");
+          .from(".gsap-title-2", { y: 100, opacity: 0, duration: 0.6, ease: "back.out(1.5)" }, "-=0.4")
+          .from(".gsap-fade", { y: 20, opacity: 0, duration: 0.5 }, "-=0.2");
 
-        // Menu Grid Scroll Reveals
+        // Menu Rows Scroll Reveal
         gsap.utils.toArray('.gsap-fade-up').forEach(element => {
             gsap.from(element, {
                 scrollTrigger: {
                     trigger: element,
-                    start: "top 85%",
+                    start: "top 80%",
                 },
                 y: 100,
                 opacity: 0,
-                duration: 0.6,
+                duration: 0.8,
                 ease: "power3.out"
             });
         });
@@ -523,7 +565,7 @@
             gsap.from(element, {
                 scrollTrigger: {
                     trigger: ".franchise",
-                    start: "top 70%",
+                    start: "top 75%",
                 },
                 scale: 0.8,
                 y: 50,
@@ -534,16 +576,18 @@
             });
         });
 
-        // Image Parallax on Scroll
-        gsap.to(".hero-img", {
-            yPercent: 30,
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".hero",
-                start: "top top",
-                end: "bottom top",
-                scrub: true
-            }
+        // Parallax Effect for Menu Images
+        gsap.utils.toArray('.menu-image-container img').forEach(img => {
+            gsap.to(img, {
+                yPercent: 10,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: img.parentElement,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
         });
     </script>
 </body>
