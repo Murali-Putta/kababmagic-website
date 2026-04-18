@@ -1,162 +1,550 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Kabab Magic</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KABAB MAGIC | 100% FIRE</title>
+    
+    <!-- High-Energy Fonts: Bebas Neue (Massive Headlines) & Space Grotesk (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <style>
+        /* === ACID & STREET PALETTE === */
+        :root {
+            --bg: #050505;
+            --text-main: #F4F4F5;
+            --acid-yellow: #ccff00;
+            --hot-pink: #ff0055;
+            --cyan: #00f0ff;
+        }
 
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: crosshair; /* Edgy cursor */
+        }
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <!-- Hero Section -->
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        h1, h2, h3, .display {
+            font-family: 'Bebas Neue', sans-serif;
+            text-transform: uppercase;
+            line-height: 0.9;
+        }
+
+        ::selection {
+            background: var(--acid-yellow);
+            color: var(--bg);
+        }
+
+        /* === NOISE OVERLAY === */
+        .noise {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.05;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* === NAV === */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            mix-blend-mode: difference;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        .logo span { color: var(--acid-yellow); }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            margin-left: 30px;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0;
+            width: 0%; height: 3px;
+            background: var(--acid-yellow);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        /* === HERO SECTION === */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        .hero-img {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60vw;
+            height: 60vh;
+            object-fit: cover;
+            opacity: 0.4;
+            filter: grayscale(100%) contrast(1.2);
+            z-index: 0;
+            border-radius: 20px;
+            transition: filter 0.5s;
+        }
+
+        .hero:hover .hero-img {
+            filter: grayscale(0%) contrast(1.1);
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            width: 100%;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(6rem, 15vw, 15rem);
+            color: var(--text-main);
+            margin: 0;
+            text-shadow: 4px 4px 0px var(--hot-pink), -4px -4px 0px var(--cyan);
+            animation: glitch 3s infinite alternate;
+        }
+
+        .hero-text .outline {
+            color: transparent;
+            -webkit-text-stroke: 2px var(--acid-yellow);
+            text-shadow: none;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 4px 4px 0px var(--hot-pink), -4px -4px 0px var(--cyan); }
+            10% { text-shadow: -4px 4px 0px var(--hot-pink), 4px -4px 0px var(--cyan); }
+            20% { text-shadow: 4px 4px 0px var(--hot-pink), -4px -4px 0px var(--cyan); }
+            100% { text-shadow: 4px 4px 0px var(--hot-pink), -4px -4px 0px var(--cyan); }
+        }
+
+        /* === INFINITE MARQUEE === */
+        .marquee-container {
+            background: var(--acid-yellow);
+            color: var(--bg);
+            padding: 15px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            border-top: 4px solid var(--text-main);
+            border-bottom: 4px solid var(--text-main);
+            transform: rotate(-2deg);
+            width: 105vw;
+            margin-left: -2.5vw;
+            z-index: 10;
+        }
+
+        .marquee {
+            display: inline-block;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            animation: scroll 10s linear infinite;
+        }
+
+        .marquee span { margin: 0 30px; }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* === HIGH ENERGY MENU === */
+        .menu-section {
+            padding: 150px 5% 100px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(4rem, 8vw, 8rem);
+            margin-bottom: 60px;
+            color: var(--acid-yellow);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        .menu-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #111;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+        }
+
+        .menu-img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) brightness(0.6);
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .menu-item:hover .menu-img {
+            filter: grayscale(0%) brightness(0.9);
+            transform: scale(1.1);
+        }
+
+        .menu-content {
+            position: absolute;
+            inset: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            z-index: 2;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+        }
+
+        .menu-content h3 {
+            font-size: 3.5rem;
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        .menu-item:hover .menu-content h3 {
+            color: var(--acid-yellow);
+        }
+
+        .menu-content p {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ccc;
+            margin-top: 10px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .menu-item:hover .menu-content p {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .tag {
+            position: absolute;
+            top: 20px; right: 20px;
+            background: var(--hot-pink);
+            color: #fff;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            padding: 5px 15px;
+            transform: rotate(5deg);
+            z-index: 3;
+            box-shadow: 4px 4px 0px #000;
+        }
+
+        /* === FRANCHISE EXPLOSION === */
+        .franchise {
+            background: var(--hot-pink);
+            padding: 150px 5%;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            border-top: 5px solid #fff;
+        }
+
+        .franchise h2 {
+            font-size: clamp(5rem, 10vw, 10rem);
+            color: var(--bg);
+            text-shadow: 2px 2px 0 #fff;
+            margin-bottom: 20px;
+            line-height: 0.8;
+            position: relative;
+            z-index: 2;
+        }
+
+        .franchise p {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--bg);
+            max-width: 700px;
+            margin: 0 auto 50px auto;
+            position: relative;
+            z-index: 2;
+            text-transform: uppercase;
+        }
+
+        .btn-massive {
+            display: inline-block;
+            background: var(--acid-yellow);
+            color: var(--bg);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            padding: 20px 60px;
+            text-decoration: none;
+            border: 4px solid var(--bg);
+            box-shadow: 10px 10px 0px var(--bg);
+            transition: all 0.2s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-massive:hover {
+            transform: translate(-5px, -5px);
+            box-shadow: 15px 15px 0px var(--bg);
+        }
+
+        .btn-massive:active {
+            transform: translate(5px, 5px);
+            box-shadow: 0px 0px 0px var(--bg);
+        }
+
+        /* Background kinetic text for franchise */
+        .bg-text {
+            position: absolute;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 20rem;
+            color: rgba(0,0,0,0.1);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* === FOOTER === */
+        footer {
+            background: var(--bg);
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        footer h1 {
+            font-size: 4rem;
+            color: var(--acid-yellow);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            nav { justify-content: center; }
+            .menu-grid { grid-template-columns: 1fr; }
+            .menu-item { aspect-ratio: 1/1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Film Grain / Noise Effect -->
+    <div class="noise"></div>
+
+    <!-- NAV -->
+    <nav class="gsap-nav">
+        <a href="#" class="logo">KABAB<span>MAGIC</span></a>
+        <div class="nav-links">
+            <a href="#menu">The Lineup</a>
+            <a href="#franchise">Franchise</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
     <section class="hero">
-      <div class="container">
-        <h1>Welcome to Kabab Magic</h1>
-        <p class="lead">Delicious kababs, biryanis, and more!</p>
-      </div>
-    </section>
-
-    <!-- Menu Section -->
-    <section id="menu" class="py-5 bg-light">
-      <div class="container">
-        <h2 class="text-center mb-4">Our Menu</h2>
-        <div class="row g-4">
-          <div class="col-md-4">
-            <div class="menu-card p-3 shadow">
-              <img
-                src="images/kabab.png"
-                class="img-fluid rounded mb-3"
-                alt="Kabab"
-              />
-              <h4>Chicken Kabab</h4>
-              <p>Juicy, flavorful kababs served with mint chutney.</p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="menu-card p-3 shadow">
-              <img
-                src="images/biryani.png"
-                class="img-fluid rounded mb-3"
-                alt="Biryani"
-              />
-              <h4>Hyderabadi Biryani</h4>
-              <p>Fragrant rice cooked with tender meat and spices.</p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="menu-card p-3 shadow">
-              <img
-                src="images/shawarma.png"
-                class="img-fluid rounded mb-3"
-                alt="Shawarma"
-              />
-              <h4>Shawarma</h4>
-              <p>Succulent meat wrapped in freshly baked pita bread.</p>
-            </div>
-          </div>
+        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=2000&auto=format&fit=crop" class="hero-img gsap-img" alt="Hero Background">
+        <div class="hero-text">
+            <h1 class="gsap-title-1">FLAVOR THAT</h1>
+            <h1 class="gsap-title-2 outline">HITS DIFFERENT.</h1>
         </div>
-      </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-5">
-      <div class="container">
-        <h2 class="text-center mb-4">Customer Reviews</h2>
-        <div class="row g-4">
-          <div class="col-md-6">
-            <div class="p-4 shadow-sm">
-              <h3>A Taste of Heaven</h3>
-              <p>
-                "KababMagic is hands down the best place for authentic and
-                delicious kababs in town! The flavors are rich, the meat is
-                tender, and every dish is cooked to perfection. The biryani is
-                equally amazing. Definitely my go-to place for a tasty and
-                satisfying meal."
-              </p>
-              <h5 class="mt-3">- Rahul S.</h5>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="p-4 shadow-sm">
-              <h3>The Best Kababs in Town</h3>
-              <p>
-                "I’ve tried kababs from a lot of places, but none compare to
-                KababMagic! The grilled kababs are perfectly seasoned and cooked
-                just right. The shawarma wraps are delicious, and their fresh
-                grape juice is the cherry on top. You have to try it to believe
-                it!"
-              </p>
-              <h5 class="mt-3">- Priya K.</h5>
-            </div>
-          </div>
+    <!-- KINETIC MARQUEE -->
+    <div class="marquee-container">
+        <div class="marquee">
+            <span>🔥 100% FIRE GRILLED</span>
+            <span>💥 SPICE LOADED</span>
+            <span>🤤 HIGHLY ADDICTIVE</span>
+            <span>🔥 100% FIRE GRILLED</span>
+            <span>💥 SPICE LOADED</span>
+            <span>🤤 HIGHLY ADDICTIVE</span>
         </div>
-      </div>
+    </div>
+
+    <!-- MENU LINEUP -->
+    <section id="menu" class="menu-section">
+        <h2 class="section-title gsap-fade-up">THE LINEUP //</h2>
+        
+        <div class="menu-grid">
+            
+            <div class="menu-item gsap-fade-up">
+                <div class="tag">OG STATUS</div>
+                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1000&auto=format&fit=crop" alt="Chicken Kabab" class="menu-img">
+                <div class="menu-content">
+                    <h3>CHICKEN KABAB</h3>
+                    <p>Smoky, charred, and dripping with our secret spice blend. The legend that started it all.</p>
+                </div>
+            </div>
+
+            <div class="menu-item gsap-fade-up">
+                <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?q=80&w=1000&auto=format&fit=crop" alt="Dum Biryani" class="menu-img">
+                <div class="menu-content">
+                    <h3>ROYAL DUM BIRYANI</h3>
+                    <p>Basmati rice and tender meat, trapped in a pot and slow-cooked until it blows your mind.</p>
+                </div>
+            </div>
+
+            <div class="menu-item gsap-fade-up">
+                <div class="tag">SPICY AF</div>
+                <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?q=80&w=1000&auto=format&fit=crop" alt="Mutton Rogan Josh" class="menu-img">
+                <div class="menu-content">
+                    <h3>MUTTON ROGAN JOSH</h3>
+                    <p>Fall-off-the-bone mutton in a fiery, rich crimson curry. Not for the faint of heart.</p>
+                </div>
+            </div>
+
+            <div class="menu-item gsap-fade-up">
+                <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?q=80&w=1000&auto=format&fit=crop" alt="Tandoori Chicken" class="menu-img">
+                <div class="menu-content">
+                    <h3>TANDOORI CHICKEN</h3>
+                    <p>Yogurt, red chili, and intense clay-oven heat. A classic executed flawlessly.</p>
+                </div>
+            </div>
+
+            <div class="menu-item gsap-fade-up">
+                <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=1000&auto=format&fit=crop" alt="Shawarma" class="menu-img">
+                <div class="menu-content">
+                    <h3>CLASSIC SHAWARMA</h3>
+                    <p>Shaved spit-roasted meat wrapped up tight and loaded with garlic toum.</p>
+                </div>
+            </div>
+
+            <div class="menu-item gsap-fade-up">
+                <div class="tag">VEG FIRE</div>
+                <img src="https://images.unsplash.com/photo-1628294895950-9805252327bc?q=80&w=1000&auto=format&fit=crop" alt="Paneer Tikka" class="menu-img">
+                <div class="menu-content">
+                    <h3>SIZZLING PANEER</h3>
+                    <p>Thick cuts of fresh paneer, charred to perfection. Vegetarians, we got you.</p>
+                </div>
+            </div>
+
+        </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-5 bg-light">
-      <div class="container">
-        <h2 class="text-center mb-4">Contact Us</h2>
-        <form>
-          <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input
-              type="text"
-              class="form-control"
-              id="name"
-              placeholder="Your Name"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input
-              type="email"
-              class="form-control"
-              id="email"
-              placeholder="Your Email"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="message" class="form-label">Message</label>
-            <textarea
-              class="form-control"
-              id="message"
-              rows="4"
-              placeholder="Your Message"
-            ></textarea>
-          </div>
-          <button type="submit" class="btn btn-warning">Send Message</button>
-        </form>
-      </div>
+    <!-- FRANCHISE SECTION -->
+    <section id="franchise" class="franchise">
+        <div class="bg-text">JOIN THE CULT</div>
+        <h2 class="gsap-scale-up">WANT A PIECE?</h2>
+        <p class="gsap-scale-up">Skip the corporate BS. We are expanding rapidly. Talk directly to the owners on WhatsApp and launch Kabab Magic in your territory.</p>
+        
+        <div class="gsap-scale-up">
+            <!-- Replace '1234567890' with your actual WhatsApp Number -->
+            <a href="https://wa.me/1234567890?text=I%20want%20to%20open%20a%20Kabab%20Magic." target="_blank" class="btn-massive">
+                <i class="fa-brands fa-whatsapp"></i> HIT US ON WHATSAPP
+            </a>
+        </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="text-center">
-      <p>
-        © 2024 Kabab Magic. All Rights Reserved. <br />
-        Follow us on
-        <a href="https://wa.me/918861688759?text=" target="_blank">Whatsapp</a>
-      </p>
+    <!-- FOOTER -->
+    <footer>
+        <h1>KABAB MAGIC</h1>
+        <p style="color: #666; margin-top: 10px; font-weight: bold;">© 2026. NO COMPROMISE ON FLAVOR.</p>
     </footer>
 
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- GSAP for Snappy Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-    <!-- Custom JS -->
-    <script src="script.js"></script>
-  </body>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Initial Load Animations
+        const tl = gsap.timeline();
+        
+        tl.from(".gsap-nav", { y: -50, opacity: 0, duration: 0.5, ease: "power2.out" })
+          .from(".gsap-img", { scale: 1.2, opacity: 0, duration: 1, ease: "power3.out" }, "-=0.2")
+          .from(".gsap-title-1", { y: 100, opacity: 0, duration: 0.6, ease: "back.out(1.5)" }, "-=0.6")
+          .from(".gsap-title-2", { y: 100, opacity: 0, duration: 0.6, ease: "back.out(1.5)" }, "-=0.4");
+
+        // Menu Grid Scroll Reveals
+        gsap.utils.toArray('.gsap-fade-up').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 85%",
+                },
+                y: 100,
+                opacity: 0,
+                duration: 0.6,
+                ease: "power3.out"
+            });
+        });
+
+        // Franchise Scaling effect
+        gsap.utils.toArray('.gsap-scale-up').forEach((element, i) => {
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: ".franchise",
+                    start: "top 70%",
+                },
+                scale: 0.8,
+                y: 50,
+                opacity: 0,
+                duration: 0.6,
+                delay: i * 0.1,
+                ease: "back.out(1.5)"
+            });
+        });
+
+        // Image Parallax on Scroll
+        gsap.to(".hero-img", {
+            yPercent: 30,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+    </script>
+</body>
 </html>
