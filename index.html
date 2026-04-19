@@ -627,7 +627,7 @@
                 // Prevent double counting on simple page refreshes
                 const hasVisited = sessionStorage.getItem('hasVisited_kabab');
                 
-                let url = `https://api.counterapi.dev/v2/${workspace}/${counterName}`;
+                let url = `https://api.counterapi.dev/v1/${workspace}/${counterName}`;
                 
                 // Hit the '/up' endpoint for new sessions, otherwise just GET the current count
                 if (!hasVisited) {
