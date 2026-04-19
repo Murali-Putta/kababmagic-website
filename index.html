@@ -611,75 +611,47 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
    
-<!-- LIVE VISITOR COUNTER (COUNTERAPI.DEV V1) -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
-import { getFirestore, doc, getDoc, setDoc, updateDoc, increment } 
-from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
+   <!-- STATELESS TIME-BASED VISITOR COUNTER -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const visitorElement = document.getElementById('visitor-count');
+            
+            // --- CONFIGURATION ---
+            // Set an anchor date in the past (Format: YYYY-MM-DD)
+            const launchDate = new Date('2026-04-19T00:00:00Z').getTime(); 
+            const baseNumber = 48321; // Starting number
+            const dailyIncrease = 100; // Exact number to grow by every 24 hours
+            
+            const updateCounter = () => {
+                const now = new Date().getTime();
+                
+                // Calculate exact fractional days elapsed since launch date
+                const daysElapsed = (now - launchDate) / (1000 * 60 * 60 * 24);
+                
+                // Calculate current exact number (will grow automatically based on time)
+                let currentNumber = Math.floor(baseNumber + (daysElapsed * dailyIncrease));
+                
+                // Retrieve local session ticks so it doesn't reset while they are actively watching
+                let sessionTicks = parseInt(sessionStorage.getItem('km_session_ticks') || '0');
+                
+                visitorElement.innerText = (currentNumber + sessionTicks).toLocaleString();
+            };
 
-// ✅ Your existing config (no change)
-const firebaseConfig = {
-  apiKey: "AIzaSyBksapMpMvd1IYITxlCEVnXFoiBx9wTx2o",
-  authDomain: "kabab-magic-70cb8.firebaseapp.com",
-  projectId: "kabab-magic-70cb8",
-  storageBucket: "kabab-magic-70cb8.firebasestorage.app",
-  messagingSenderId: "388123276818",
-  appId: "1:388123276818:web:8b0aec6abb12c53d87cacb",
-  measurementId: "G-H3184FJFNS"
-};
+            // Initialize counter immediately on load
+            updateCounter();
 
-// 🔥 Init
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-// 🚀 Counter logic
-document.addEventListener("DOMContentLoaded", async () => {
-  const visitorElement = document.getElementById('visitor-count');
-
-  try {
-    const counterRef = doc(db, "counters", "visits");
-
-    const hasVisited = sessionStorage.getItem("visited_kabab");
-
-    // increment only once per session
-    if (!hasVisited) {
-      await updateDoc(counterRef, {
-        count: increment(1)
-      }).catch(async () => {
-        // create if not exists
-        await setDoc(counterRef, { count: 1 });
-      });
-
-      sessionStorage.setItem("visited_kabab", "true");
-    }
-
-    // get latest count
-    const snap = await getDoc(counterRef);
-
-    if (snap.exists()) {
-      const count = snap.data().count || 0;
-      const displayCount = 48321 + count;
-      visitorElement.innerText = displayCount.toLocaleString();
-    } else {
-      visitorElement.innerText = "48,321";
-    }
-
-  } catch (err) {
-    console.error("Firebase error:", err);
-
-    // fallback (safe)
-    let count = parseInt(localStorage.getItem('fallback_count') || '48321');
-
-    if (!sessionStorage.getItem('local_visited_kabab')) {
-      count += Math.floor(Math.random() * 5) + 1;
-      localStorage.setItem('fallback_count', count);
-      sessionStorage.setItem('local_visited_kabab', 'true');
-    }
-
-    visitorElement.innerText = count.toLocaleString();
-  }
-});
-</script>
+            // Simulate live traffic: tick up organically while the user is on the page
+            setInterval(() => {
+                // 30% chance to tick up every 3 seconds (feels like real user traffic)
+                if (Math.random() > 0.7) { 
+                    let sessionTicks = parseInt(sessionStorage.getItem('km_session_ticks') || '0');
+                    sessionTicks += 1;
+                    sessionStorage.setItem('km_session_ticks', sessionTicks);
+                    updateCounter(); // Re-render
+                }
+            }, 3000);
+        });
+    </script>
     <!-- Visual Animations Script -->
     <script>
         gsap.registerPlugin(ScrollTrigger);
