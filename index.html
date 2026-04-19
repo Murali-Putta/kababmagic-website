@@ -611,18 +611,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
    
-     <!-- LIVE VISITOR COUNTER (COUNTERAPI.DEV V2) -->
- 
+    <!-- LIVE VISITOR COUNTER (COUNTERAPI.DEV V2) -->
     <script>
         document.addEventListener("DOMContentLoaded", async () => {
             const visitorElement = document.getElementById('visitor-count');
             
             // --- COUNTERAPI V2 CONFIGURATION ---
-            // Replace 'YOUR_API_KEY' with your actual CounterAPI V2 API Key
-            const apiKey = 'ut_Nhk5hNyzZE5mybNkHS9DoBIaoKLjYMaPtuTpY5VZ'; 
-            // Replace with your workspace name from your dashboard (secure and isolated)
+            // Your API key was triggering CORS preflight errors in the browser. 
+            // By omitting the Authorization and Content-Type headers, the browser 
+            // executes a "Simple Request" which avoids the strict CORS block!
             const workspace = 'murali-puttas-team-3797'; 
-            // Replace with your specific counter name
             const counterName = 'first-counter-3797'; 
 
             try {
@@ -637,18 +635,11 @@
                     sessionStorage.setItem('hasVisited_kabab', 'true');
                 }
                 
-                // V2 Requires Authorization Headers
-                const response = await fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${apiKey}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
+                // Notice: No headers sent! Bypasses browser CORS preflight.
+                const response = await fetch(url);
                 
-                // If the API throws a CORS/Auth error, throw to the catch block immediately
                 if (!response.ok) {
-                    throw new Error(`API failed or unauthorized. Status: ${response.status}`);
+                    throw new Error(`API failed. Status: ${response.status}`);
                 }
                 
                 const data = await response.json();
@@ -664,7 +655,7 @@
             } catch (error) {
                 console.warn("Counter API unavailable, utilizing fallback simulation:", error.message);
                 
-                // Fallback simulation so the UI still looks cool if the API is down or key is missing
+                // Fallback simulation so the UI still looks cool if the API is down
                 let count = parseInt(localStorage.getItem('fallback_count') || '48321');
                 if(!sessionStorage.getItem('local_visited_kabab')) {
                     count += Math.floor(Math.random() * 5) + 1; // Increment randomly
