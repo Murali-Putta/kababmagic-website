@@ -612,56 +612,74 @@
 
    
 <!-- LIVE VISITOR COUNTER (COUNTERAPI.DEV V1) -->
-    <script>
-        document.addEventListener("DOMContentLoaded", async () => {
-            const visitorElement = document.getElementById('visitor-count');
-            
-            // --- COUNTERAPI V1 CONFIGURATION ---
-            const namespace = 'murali-puttas-team-3797'; 
-            const counterName = 'first-counter-3797'; 
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.0/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc, updateDoc, increment } 
+from "https://www.gstatic.com/firebasejs/12.12.0/firebase-firestore.js";
 
-            try {
-                // Prevent double counting on simple page refreshes
-                const hasVisited = sessionStorage.getItem('hasVisited_kabab');
-                
-                let url = `https://api.counterapi.dev/v1/${namespace}/${counterName}`;
-                
-                // Hit the '/up' endpoint for new sessions, otherwise just GET the current count
-                if (!hasVisited) {
-                    url += '/up'; 
-                    sessionStorage.setItem('hasVisited_kabab', 'true');
-                }
-                
-                const response = await fetch(url);
-                
-                if (!response.ok) {
-                    throw new Error(`API failed. Status: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                
-                if(data && typeof data.count === 'number') {
-                    // Add a base number of 48,321 to the actual API count
-                    const displayCount = 48321 + data.count; 
-                    visitorElement.innerText = displayCount.toLocaleString();
-                } else {
-                    throw new Error("Invalid API response format");
-                }
+// ✅ Your existing config (no change)
+const firebaseConfig = {
+  apiKey: "AIzaSyBksapMpMvd1IYITxlCEVnXFoiBx9wTx2o",
+  authDomain: "kabab-magic-70cb8.firebaseapp.com",
+  projectId: "kabab-magic-70cb8",
+  storageBucket: "kabab-magic-70cb8.firebasestorage.app",
+  messagingSenderId: "388123276818",
+  appId: "1:388123276818:web:8b0aec6abb12c53d87cacb",
+  measurementId: "G-H3184FJFNS"
+};
 
-            } catch (error) {
-                console.warn("Counter API unavailable, utilizing fallback simulation:", error.message);
-                
-                // Fallback simulation so the UI still looks cool if the API is down
-                let count = parseInt(localStorage.getItem('fallback_count') || '48321');
-                if(!sessionStorage.getItem('local_visited_kabab')) {
-                    count += Math.floor(Math.random() * 5) + 1; // Increment randomly
-                    localStorage.setItem('fallback_count', count);
-                    sessionStorage.setItem('local_visited_kabab', 'true');
-                }
-                visitorElement.innerText = count.toLocaleString();
-            }
-        });
-    </script>
+// 🔥 Init
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// 🚀 Counter logic
+document.addEventListener("DOMContentLoaded", async () => {
+  const visitorElement = document.getElementById('visitor-count');
+
+  try {
+    const counterRef = doc(db, "counters", "visits");
+
+    const hasVisited = sessionStorage.getItem("visited_kabab");
+
+    // increment only once per session
+    if (!hasVisited) {
+      await updateDoc(counterRef, {
+        count: increment(1)
+      }).catch(async () => {
+        // create if not exists
+        await setDoc(counterRef, { count: 1 });
+      });
+
+      sessionStorage.setItem("visited_kabab", "true");
+    }
+
+    // get latest count
+    const snap = await getDoc(counterRef);
+
+    if (snap.exists()) {
+      const count = snap.data().count || 0;
+      const displayCount = 48321 + count;
+      visitorElement.innerText = displayCount.toLocaleString();
+    } else {
+      visitorElement.innerText = "48,321";
+    }
+
+  } catch (err) {
+    console.error("Firebase error:", err);
+
+    // fallback (safe)
+    let count = parseInt(localStorage.getItem('fallback_count') || '48321');
+
+    if (!sessionStorage.getItem('local_visited_kabab')) {
+      count += Math.floor(Math.random() * 5) + 1;
+      localStorage.setItem('fallback_count', count);
+      sessionStorage.setItem('local_visited_kabab', 'true');
+    }
+
+    visitorElement.innerText = count.toLocaleString();
+  }
+});
+</script>
     <!-- Visual Animations Script -->
     <script>
         gsap.registerPlugin(ScrollTrigger);
