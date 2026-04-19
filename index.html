@@ -611,23 +611,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
    
-    <!-- LIVE VISITOR COUNTER (COUNTERAPI.DEV V2) -->
+<!-- LIVE VISITOR COUNTER (COUNTERAPI.DEV V1) -->
     <script>
         document.addEventListener("DOMContentLoaded", async () => {
             const visitorElement = document.getElementById('visitor-count');
             
-            // --- COUNTERAPI V2 CONFIGURATION ---
-            // Your API key was triggering CORS preflight errors in the browser. 
-            // By omitting the Authorization and Content-Type headers, the browser 
-            // executes a "Simple Request" which avoids the strict CORS block!
-            const workspace = 'murali-puttas-team-3797'; 
+            // --- COUNTERAPI V1 CONFIGURATION ---
+            const namespace = 'murali-puttas-team-3797'; 
             const counterName = 'first-counter-3797'; 
 
             try {
                 // Prevent double counting on simple page refreshes
                 const hasVisited = sessionStorage.getItem('hasVisited_kabab');
                 
-                let url = `https://api.counterapi.dev/v1/${workspace}/${counterName}`;
+                let url = `https://api.counterapi.dev/v1/${namespace}/${counterName}`;
                 
                 // Hit the '/up' endpoint for new sessions, otherwise just GET the current count
                 if (!hasVisited) {
@@ -635,7 +632,6 @@
                     sessionStorage.setItem('hasVisited_kabab', 'true');
                 }
                 
-                // Notice: No headers sent! Bypasses browser CORS preflight.
                 const response = await fetch(url);
                 
                 if (!response.ok) {
