@@ -14,7 +14,7 @@
     <!-- Open Graph / Social Media Tags -->
     <meta property="og:title" content="KABAB MAGIC | Apologize To Your Trainer">
     <meta property="og:description" content="We serve aggressive, fire-forged, unapologetically spicy meat that will make you question every life choice. Come get your kababs, biryani, and shawarma.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=80">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=1200&q=80">
     <meta property="og:url" content="https://kababmagic.com/">
     <meta property="og:type" content="restaurant">
 
@@ -222,7 +222,7 @@
             display: inline-block;
             font-family: 'Bebas Neue', sans-serif;
             font-size: 4rem;
-            animation: scroll 20s linear infinite;
+            animation: scroll 30s linear infinite;
         }
 
         .marquee span { margin: 0 40px; }
@@ -388,10 +388,10 @@
             color: #fff;
         }
 
-        /* === FOOTER === */
+        /* === FOOTER & VISITOR STATS === */
         footer {
             background: var(--bg);
-            padding: 50px 20px;
+            padding: 70px 20px;
             text-align: center;
             border-top: 2px solid rgba(255,255,255,0.1);
         }
@@ -399,6 +399,25 @@
         footer h1 {
             font-size: 4rem;
             color: var(--acid-yellow);
+            margin-bottom: 20px;
+        }
+
+        .visitor-stats {
+            margin-top: 20px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--text-main);
+            padding: 20px;
+            border: 2px dashed rgba(255,255,255,0.2);
+            display: inline-block;
+            border-radius: 10px;
+        }
+
+        .visitor-stats span {
+            color: var(--hot-pink);
+            text-shadow: 2px 2px 0px var(--cyan);
+            font-size: 3rem;
+            margin-left: 10px;
         }
 
         /* === RESPONSIVE === */
@@ -418,6 +437,8 @@
             nav { justify-content: center; }
             .franchise { padding: 100px 5%; }
             .btn-massive { font-size: 2rem; padding: 20px 40px; box-shadow: 10px 10px 0px var(--hot-pink); }
+            .visitor-stats { font-size: 1.8rem; }
+            .visitor-stats span { font-size: 2.2rem; display: block; margin-top: 10px;}
         }
     </style>
 </head>
@@ -427,39 +448,40 @@
     <nav class="gsap-nav">
         <a href="#" class="logo">KABAB<span>MAGIC</span></a>
         <div class="nav-links">
-            <a href="#menu">The Calorie Trap</a>
-            <a href="#franchise">Take Our Money</a>
+            <a href="#menu">Menu</a>
+            <a href="#franchise">Franchise</a>
         </div>
     </nav>
 
-    <!-- HERO -->
     <section class="hero">
         <div class="hero-bg-text">GYM MEMBERSHIP VOID</div>
-        
         <div class="hero-content">
             <div class="hero-text">
                 <h1 class="gsap-title-1">FLAVOR THAT</h1>
-                <h1 class="gsap-title-2 outline">RUINS DIETS.</h1>
-                <p class="gsap-fade">Welcome to the reason your personal trainer hates you. If you’re looking for a kale smoothie, close this tab before we call the cops. We serve aggressive, fire-forged, unapologetically spicy meat that will make you question every life choice that didn't lead you here.</p>
+                <h1 class="gsap-title-2 outline">HITS DIFFERENT.</h1>
+                <p class="gsap-fade">Welcome to the reason your personal trainer hates you. If you’re looking for a kale smoothie, close this tab before we call the cops. We serve aggressive, fire-forged, unapologetically spicy meat that lives rent-free in your head and makes you question every life choice.</p>
             </div>
-            
             <div class="hero-img-box gsap-img">
                 <div class="sticker">HOT<br>AF</div>
-                <!-- SEO Optimized Alt text -->
-                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=80" alt="Spicy fire-grilled Chicken Kabab platter at Kabab Magic">
+                <!-- AUTHENTIC TANDOORI PLATTER -->
+                <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=1200&q=80" alt="Authentic spicy tandoori chicken platter">
             </div>
         </div>
     </section>
 
-    <!-- KINETIC MARQUEE -->
     <div class="marquee-wrapper">
         <div class="marquee">
-            <span>🔥 YOUR DIET EXPIRED YESTERDAY</span>
-            <span>💥 EAT THE CARBS, COWARD</span>
-            <span>🤤 SALAD IS A GOVERNMENT MYTH</span>
-            <span>🔥 YOUR DIET EXPIRED YESTERDAY</span>
-            <span>💥 EAT THE CARBS, COWARD</span>
-            <span>🤤 SALAD IS A GOVERNMENT MYTH</span>
+            <span>💀 CURES YOUR DELULU FASTER THAN THERAPY</span>
+            <span>💼 WFH = WORKING FROM HERE NOW</span>
+            <span>📱 GHOST YOUR SITUATIONSHIP, EAT THIS FIRST</span>
+            <span>👑 ABSOLUTE MAIN CHARACTER ENERGY</span>
+            <span>🚩 IGNORING RED FLAGS BUT NOT THIS MENU</span>
+            <span>💀 CURES YOUR DELULU FASTER THAN THERAPY</span>
+            <span>💼 WFH = WORKING FROM HERE NOW</span>
+            <span>📱 GHOST YOUR SITUATIONSHIP, EAT THIS FIRST</span>
+            <span>💥 DIET STARTS MONDAY (THAT'S A LIE)</span>
+            <span>👑 ABSOLUTE MAIN CHARACTER ENERGY</span>
+            <span>🚩 IGNORING RED FLAGS BUT NOT THIS MENU</span>
         </div>
     </div>
 
@@ -472,52 +494,84 @@
             <!-- Menu Item 1: Chicken Kabab -->
             <div class="menu-row gsap-fade-up">
                 <div class="menu-image-container">
-                    <!-- SEO Optimized Alt text -->
-                    <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?auto=format&fit=crop&w=1200&q=80" alt="Juicy marinated Chicken Kabab skewers sizzling on a grill">
+                    <img src="https://images.unsplash.com/photo-1567620832903-9fc6debc209f?q=80&w=960&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Authentic spicy chicken 65 kabab chunks">
                 </div>
                 <div class="menu-info">
-                    <div class="tag">PROTEIN, BUT MAKE IT VIOLENT</div>
+                    <div class="tag">W MEAL, NO CAP</div>
                     <h3>THE CHICKEN KABAB</h3>
-                    <p>Marinated so aggressively it practically cooks itself. Charred over open flames until it tastes like pure adrenaline. If you ask us to 'make it mild,' we will hand you a glass of water and ask you to leave. Have some self-respect.</p>
+                    <p>Marinated so aggressively it practically cooks itself. Charred over open flames until it tastes like pure adrenaline. If you ask us to 'make it mild,' we will hand you a glass of water and ask you to leave. Zero rizz behavior. Have some self-respect.</p>
                 </div>
             </div>
 
             <!-- Menu Item 2: Biryani -->
             <div class="menu-row gsap-fade-up">
                 <div class="menu-image-container">
-                    <!-- SEO Optimized Alt text -->
-                    <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=1200&q=80" alt="Authentic Royal Indian Dum Biryani with spiced basmati rice and meat">
+                    <img src="https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&fit=crop&w=1200&q=80" alt="Authentic Indian Dum Biryani packed with meat">
                 </div>
                 <div class="menu-info">
-                    <div class="tag tag-yellow">THE 48-HOUR NAP</div>
+                    <div class="tag tag-yellow">CURES DELULU</div>
                     <h3>ROYAL DUM BIRYANI</h3>
-                    <p>Aged basmati rice and fall-apart meat trapped in a sealed pot with enough spices to legally count as a controlled substance. Cancel your afternoon meetings. You're going into a carb-induced hibernation, and you're going to love it.</p>
+                    <p>Aged basmati rice and fall-apart meat trapped in a sealed pot with enough spices to legally count as a controlled substance. Cancel your afternoon syncs; you're going into a carb-induced hibernation and officially escaping the matrix.</p>
                 </div>
             </div>
 
-            <!-- Menu Item 3: Shawarma -->
+            <!-- Menu Item 3: Shawarma Roll -->
             <div class="menu-row gsap-fade-up">
                 <div class="menu-image-container">
-                    <!-- SEO Optimized Alt text -->
-                    <img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&w=1200&q=80" alt="Classic spit-roasted Shawarma wrap packed with meat and garlic toum">
+                    <img src="https://images.unsplash.com/photo-1530469912745-a215c6b256ea?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0" alt="Meaty Shawarma wrap cut in half">
                 </div>
                 <div class="menu-info">
-                    <div class="tag tag-cyan">YOUR EX WOULD NEVER</div>
-                    <h3>CLASSIC SHAWARMA</h3>
-                    <p>Shaved spit-roasted meat crammed into a wrap and weaponized with enough garlic toum to ensure nobody sits next to you on the train. Will it ruin your date tonight? Yes. Will it be the best thing you put in your mouth all year? Also yes.</p>
+                    <div class="tag tag-cyan">BETTER THAN UR SITUATIONSHIP</div>
+                    <h3>SHAWARMA CHICKEN ROLL</h3>
+                    <p>Packed with enough fire-roasted meat and aggressive garlic toum to permanently ward off bad vibes. It’s messy, it drips everywhere, and it’s still 100x more emotionally available than your last Hinge match.</p>
                 </div>
             </div>
 
             <!-- Menu Item 4: Tandoori Chicken -->
             <div class="menu-row gsap-fade-up">
                 <div class="menu-image-container">
-                    <!-- SEO Optimized Alt text -->
-                    <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=1200&q=80" alt="Spicy red Tandoori Chicken roasted in a traditional clay oven">
+                    <img src="https://images.unsplash.com/photo-1617692855027-33b14f061079?auto=format&fit=crop&w=1200&q=80" alt="Red hot charred Tandoori chicken legs">
                 </div>
                 <div class="menu-info">
-                    <div class="tag">BRING A TOWEL</div>
+                    <div class="tag">SWEAT OUT THE TOXICITY</div>
                     <h3>TANDOORI CHICKEN</h3>
-                    <p>Marinated in yogurt and Kashmiri chili, then thrown into a clay oven that’s basically a portal to hell. It’s violently red, illegally smoky, and will make you sweat straight through your shirt. Don't say we didn't warn you.</p>
+                    <p>Marinated in yogurt and Kashmiri chili, then thrown into a clay oven that’s basically a portal to hell. It’s violently red, illegally smoky, and guaranteed to make you sweat out all the toxic energy from the weekend.</p>
+                </div>
+            </div>
+
+            <!-- Menu Item 5: Grilled Chicken (Whole) -->
+            <div class="menu-row gsap-fade-up">
+                <div class="menu-image-container">
+                    <img src="https://images.unsplash.com/photo-1630564510791-1b8a156ec387?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Whole golden rotisserie grilled chicken">
+                </div>
+                <div class="menu-info">
+                    <div class="tag tag-yellow">PG MESS IS CRYING</div>
+                    <h3>GRILLED CHICKEN</h3>
+                    <p>Spinning on a hot grill for hours, actively bullying the sad, rubbery chicken from your PG mess. It’s golden, dangerously juicy, and dripping with enough flavor to make a gym bro cry. Mute your manager on Teams, ditch the fork, and tear into it like an absolute menace.</p>
+                </div>
+            </div>
+
+            <!-- Menu Item 6: Broasted Chicken -->
+            <div class="menu-row gsap-fade-up">
+                <div class="menu-image-container">
+                    <img src="https://images.unsplash.com/photo-1626082896492-766af4eb6501?auto=format&fit=crop&w=1200&q=80" alt="Crispy broasted fried chicken pieces">
+                </div>
+                <div class="menu-info">
+                    <div class="tag">CRUNCH LOUDER THAN HATERS</div>
+                    <h3>BROASTED CHICKEN</h3>
+                    <p>Deep-fried under pressure until the crust is violent and the inside is dangerously juicy. It’s flaky, golden, and will instantly cure whatever corporate email just gave you brain rot. Your macros might complain, but your soul will thank you.</p>
+                </div>
+            </div>
+
+            <!-- Combined Cold Drinks Menu Item -->
+            <div class="menu-row gsap-fade-up">
+                <div class="menu-image-container">
+                    <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?q=80&w=1200&auto=format&fit=crop" alt="Vibrant Rose Milk and Pulpy Grape Juice Duo">
+                </div>
+                <div class="menu-info">
+                    <div class="tag tag-cyan">NOT YOUR AESTHETIC MATCHA</div>
+                    <h3>COLD DRINKS DUO</h3>
+                    <p>Whether you need the thick, dark reality check of our <b>Pulpy Grape Juice</b> or the sweet, freezing nostalgia of <b>Rose Milk with Chia Seeds</b>, these are the only acceptable ways to put out the fire we just started in your mouth. Gym's closed pookie, drink up.</p>
                 </div>
             </div>
 
@@ -526,12 +580,12 @@
 
     <!-- FRANCHISE SECTION -->
     <section id="franchise" class="franchise">
-        <h2 class="gsap-scale-up">BE THE VILLAIN IN YOUR CITY</h2>
-        <p class="gsap-scale-up">Tired of working for a manager who schedules a "quick sync" at 8 PM on a Friday? Or asking you to "do the needful" on weekends? Open a Kabab Magic. Slide into our WhatsApp DMs, invest your savings, and start selling the most legally addictive food in the country.</p>
+        <h2 class="gsap-scale-up">QUIT YOUR TOXIC 9-TO-5</h2>
+        <p class="gsap-scale-up">Stop romanticizing corporate trauma and managers scheduling "quick syncs" at 8 PM on a Friday. Open a Kabab Magic. Slide into our WhatsApp DMs, pool your savings, and start selling the most legally addictive food in the country. Big CEO energy only.</p>
         
         <div class="gsap-scale-up">
-            <!-- Replace '1234567890' with your actual WhatsApp Number -->
-            <a href="https://wa.me/9035676744?text=Yo!%20I'm%20ready%20to%20open%20a%20Kabab%20Magic.%20Take%20my%20money." target="_blank" class="btn-massive">
+            <!-- Your specific WhatsApp Number -->
+            <a href="https://wa.me/919035676744?text=Yo!%20I'm%20ready%20to%20open%20a%20Kabab%20Magic.%20Take%20my%20money." target="_blank" class="btn-massive">
                 <i class="fa-brands fa-whatsapp"></i> SHUT UP AND TAKE MY MONEY
             </a>
         </div>
@@ -540,26 +594,79 @@
     <!-- FOOTER -->
     <footer>
         <h1>KABAB MAGIC</h1>
-        <p style="color: #666; margin-top: 10px; font-weight: bold; font-size: 1.2rem;">© 2013. IF YOU ASK FOR A SALAD, WE WILL BAN YOU.</p>
+        
+        <div class="visitor-stats">
+            PEOPLE WHO CHOSE HAPPINESS OVER ABS: <span id="visitor-count">LOADING...</span>
+        </div>
+
+        <p style="color: #666; margin-top: 40px; font-weight: bold; font-size: 1.2rem; line-height: 1.6;">
+            © 2013 KABAB MAGIC. BY SCROLLING THIS FAR, YOU LEGALLY OWE US MONEY.<br>
+            <span style="color: var(--hot-pink);">WHISPER THE WORD 'VEGAN' NEAR OUR GRILL AND WE WILL ROAST YOU INSTEAD.</span>
+        </p>
     </footer>
 
     <!-- GSAP for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
+    <!-- 3rd Party API Hit Counter (No Database Required) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const visitorElement = document.getElementById('visitor-count');
+            
+            // Using CounterAPI.dev (Free, no auth required)
+            const namespace = 'kababmagic_global_site';
+            const key = 'total_visits';
+            
+            try {
+                // Prevent double counting on simple page refreshes using sessionStorage
+                const hasVisited = sessionStorage.getItem('hasVisited_kabab');
+                
+                let url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
+                
+                // If it's a new visit for this session, hit the 'up' endpoint to increment
+                if (!hasVisited) {
+                    url += '/up'; 
+                    sessionStorage.setItem('hasVisited_kabab', 'true');
+                }
+                
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if(data && data.count) {
+                    // Add a base number of 4321 to the actual API count so it doesn't start at 1
+                    const displayCount = 4321 + data.count; 
+                    visitorElement.innerText = displayCount.toLocaleString();
+                } else {
+                    throw new Error("Invalid API response");
+                }
+
+            } catch (error) {
+                console.log("Counter API unavailable, running fallback local simulation.", error);
+                
+                // Fallback simulation so the UI still looks cool if the API ever goes down
+                let count = parseInt(localStorage.getItem('fallback_count') || '4321');
+                if(!sessionStorage.getItem('local_visited_kabab')) {
+                    count += Math.floor(Math.random() * 5) + 1; // Increment by a random small number
+                    localStorage.setItem('fallback_count', count);
+                    sessionStorage.setItem('local_visited_kabab', 'true');
+                }
+                visitorElement.innerText = count.toLocaleString();
+            }
+        });
+    </script>
+
+    <!-- Visual Animations Script -->
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // Initial Load Animations
         const tl = gsap.timeline();
-        
         tl.from(".gsap-nav", { y: -50, opacity: 0, duration: 0.5, ease: "power2.out" })
           .from(".gsap-img", { x: 50, opacity: 0, rotation: 5, duration: 1, ease: "back.out(1.2)" }, "-=0.2")
           .from(".gsap-title-1", { y: 100, opacity: 0, duration: 0.6, ease: "back.out(1.5)" }, "-=0.6")
           .from(".gsap-title-2", { y: 100, opacity: 0, duration: 0.6, ease: "back.out(1.5)" }, "-=0.4")
           .from(".gsap-fade", { y: 20, opacity: 0, duration: 0.5 }, "-=0.2");
 
-        // Menu Rows Scroll Reveal
         gsap.utils.toArray('.gsap-fade-up').forEach(element => {
             gsap.from(element, {
                 scrollTrigger: {
@@ -573,7 +680,6 @@
             });
         });
 
-        // Franchise Scaling effect
         gsap.utils.toArray('.gsap-scale-up').forEach((element, i) => {
             gsap.from(element, {
                 scrollTrigger: {
@@ -589,7 +695,6 @@
             });
         });
 
-        // Parallax Effect for Menu Images
         gsap.utils.toArray('.menu-image-container img').forEach(img => {
             gsap.to(img, {
                 yPercent: 10,
